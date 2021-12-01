@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects';
-import fetchUsers from './user/saga';
+import { UserSaga } from './user/saga';
 
 function * rootSaga () {
-    yield all([fetchUsers()]);
+    yield all([UserSaga()]);
 }
 
 export default rootSaga;

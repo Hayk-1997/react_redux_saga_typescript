@@ -2,7 +2,6 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import {userRequest, userRequestFailed, userRequestSuccess} from './slice';
 import { GetUsersRequest } from './service';
 
-
 function* fetchUsers() {
     try {
         const response : ReturnType<typeof GetUsersRequest> = yield call(GetUsersRequest);
@@ -13,6 +12,6 @@ function* fetchUsers() {
 }
 
 
-export default function* () {
+export function* UserSaga() {
     yield takeLatest(userRequest, fetchUsers);
 }
