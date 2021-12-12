@@ -4,25 +4,30 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 
 import userSlice from './user/slice';
+import { postsApi } from './post/slice';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const reducer = combineReducers({
-    users: userSlice
+    users: userSlice,
+    [postsApi.reducerPath]: postsApi.reducer
 });
 
 const store = configureStore({
     reducer,
-    middleware: [
-        ...getDefaultMiddleware({
-            immutableCheck: false,
-            serializableCheck: false
-        }),
-        sagaMiddleware
-    ],
+    // middleware: [
+    //     ...getDefaultMiddleware({
+    //         immutableCheck: false,
+    //         serializableCheck: false,
+    //         ...postsApi.middleware
+    //     }),
+    //     sagaMiddleware
+    // ],
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(postsApi.middleware),
 });
 
-sagaMiddleware.run(rootSaga);
+// sagaMiddleware.run(rootSaga);
 
 export default store;
 
