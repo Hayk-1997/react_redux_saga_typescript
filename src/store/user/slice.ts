@@ -32,7 +32,7 @@ const slice = createSlice({
 })
 
 export const getUsersSelector = (state: RootState) => state.users.users;
-export const getUserById = (id: number) => (state: RootState) => state.users.users;
+export const getUserById = (state: RootState) => state.users.users;
 
 export const {
     userRequest,

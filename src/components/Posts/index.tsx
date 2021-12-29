@@ -5,18 +5,19 @@ import Button from "@mui/material/Button";
 const Post = lazy(() => import(/* webpackChunkName: "Post" */'./Post'));
 
 const Posts: React.FC = (): JSX.Element => {
-    const [isClicked, setIsClicked] = useState("Preparing");
-    const posts  = useGetPostsQuery(isClicked, {
-        refetchOnFocus: true
+    const [isClicked] = useState<boolean>(true);
+    const { data, isLoading }  = useGetPostsQuery(isClicked, {
+        // skip: true,
+        // refetchOnFocus: true
+        // pollingInterval: 3000,
     });
 
-    console.log('data', posts.data);
     return (
         <List>
-            <Button onClick={() => setIsClicked('Dune')}>Click Me</Button>
+            <Button>Click Me</Button>
             <Suspense fallback={<div>...Loading</div>}>
                 {
-                    posts?.data?.map((post: any) => (
+                    !isLoading && data.map((post: any) => (
                        <Post
                            key={post.id}
                            post={post}

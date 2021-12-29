@@ -10,7 +10,7 @@ const UserToDo: React.FC = (): JSX.Element => {
 
     useEffect(() => {
         dispatch(userRequest());
-    }, [dispatch]);
+    }, []);
 
 
     const handleClearUsers = () => {
@@ -21,7 +21,7 @@ const UserToDo: React.FC = (): JSX.Element => {
         dispatch(removeUserById(id));
     }
     const handleGetUserById = (id: number): void => {
-        dispatch(getUserById(id));
+        dispatch(getUserById);
     }
 
     return (
